@@ -4,9 +4,14 @@ import { AppModule } from './app.module';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
+  const allowedOrigins = [
+    'https://data-button-480205-c9.web.app',
+    'http://localhost:5173'
+  ];
+
   // 💡 [핵심] CORS 설정: Vite 개발 서버 (http://localhost:5173)의 요청을 허용합니다.
   app.enableCors({
-    origin: 'https://data-button-480205-c9.web.app',
+    origin: '*',
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     credentials: true,
   });
